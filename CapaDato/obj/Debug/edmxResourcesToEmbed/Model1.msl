@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="indigoDBModelStoreContainer" CdmEntityContainer="indigoDBEntities">
+    <EntitySetMapping Name="Almacen">
+      <EntityTypeMapping TypeName="indigoDBModel.Almacen">
+        <MappingFragment StoreEntitySet="Almacen">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventarioFisico">
+      <EntityTypeMapping TypeName="indigoDBModel.InventarioFisico">
+        <MappingFragment StoreEntitySet="InventarioFisico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdAlmacen" ColumnName="IdAlmacen" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="indigoDBModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+          <ScalarProperty Name="StockMinimo" ColumnName="StockMinimo" />
+          <ScalarProperty Name="StockMaximo" ColumnName="StockMaximo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedor">
+      <EntityTypeMapping TypeName="indigoDBModel.Proveedor">
+        <MappingFragment StoreEntitySet="Proveedor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RemisionEntrada">
+      <EntityTypeMapping TypeName="indigoDBModel.RemisionEntrada">
+        <MappingFragment StoreEntitySet="RemisionEntrada">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="FechaDocumento" ColumnName="FechaDocumento" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="IdAlmacen" ColumnName="IdAlmacen" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RemisionEntradaDetalle">
+      <EntityTypeMapping TypeName="indigoDBModel.RemisionEntradaDetalle">
+        <MappingFragment StoreEntitySet="RemisionEntradaDetalle">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdRemisionEntrada" ColumnName="IdRemisionEntrada" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SearchAllProveedores1" FunctionName="indigoDBModel.Store.SearchAllProveedores">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchAllProveedores1_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchAllProductos1" FunctionName="indigoDBModel.Store.SearchAllProductos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchAllProductos1_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+          <ScalarProperty Name="StockMaximo" ColumnName="StockMaximo" />
+          <ScalarProperty Name="StockMinimo" ColumnName="StockMinimo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchAllRemisionEntrada" FunctionName="indigoDBModel.Store.SearchAllRemisionEntrada">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchAllRemisionEntrada_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Provedor" ColumnName="Provedor" />
+          <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchAllRemisionEntrada1" FunctionName="indigoDBModel.Store.SearchAllRemisionEntrada1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchAllRemisionEntrada1_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Provedor" ColumnName="Provedor" />
+          <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchAllRemisionEntradaDetalleByRIdRemisionEntrada" FunctionName="indigoDBModel.Store.SearchAllRemisionEntradaDetalleByRIdRemisionEntrada">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchAllRemisionEntradaDetalleByRIdRemisionEntrada_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdRemisionEntrada" ColumnName="IdRemisionEntrada" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchProductoYRemisionEntrada" FunctionName="indigoDBModel.Store.SearchProductoYRemisionEntrada">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchProductoYRemisionEntrada_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdRemisionEntrada" ColumnName="IdRemisionEntrada" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Report1" FunctionName="indigoDBModel.Store.Report1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.Report1_Result">
+          <ScalarProperty Name="Provedor" ColumnName="Provedor" />
+          <ScalarProperty Name="Codigo_Producto" ColumnName="Codigo_Producto" />
+          <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchInventarioFisicoCantidad" FunctionName="indigoDBModel.Store.SearchInventarioFisicoCantidad">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="indigoDBModel.SearchInventarioFisicoCantidad_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="product_count" ColumnName="product_count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Indigo", "Indigo\", "{6CD24012-EDB3-47B4-8895-2E0CAD3128FE}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54599"
+		Debug.AspNetCompiler.PhysicalPath = "Indigo\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54599\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54599"
+		Release.AspNetCompiler.PhysicalPath = "Indigo\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54599\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54599"
+		SlnRelativePath = "Indigo\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDato", "CapaDato\CapaDato.csproj", "{9CEAAE7C-2D8E-4106-8369-21216B68ECF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaCliente", "CapaCliente\CapaCliente.csproj", "{EF80C5B0-D690-49A8-A922-776B292CC5F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6CD24012-EDB3-47B4-8895-2E0CAD3128FE} = {6CD24012-EDB3-47B4-8895-2E0CAD3128FE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocio", "CapaNegocio\CapaNegocio.csproj", "{437B55E1-8661-4AD6-A082-C3036BDD953D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CD24012-EDB3-47B4-8895-2E0CAD3128FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD24012-EDB3-47B4-8895-2E0CAD3128FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD24012-EDB3-47B4-8895-2E0CAD3128FE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD24012-EDB3-47B4-8895-2E0CAD3128FE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{9CEAAE7C-2D8E-4106-8369-21216B68ECF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CEAAE7C-2D8E-4106-8369-21216B68ECF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CEAAE7C-2D8E-4106-8369-21216B68ECF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CEAAE7C-2D8E-4106-8369-21216B68ECF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF80C5B0-D690-49A8-A922-776B292CC5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF80C5B0-D690-49A8-A922-776B292CC5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF80C5B0-D690-49A8-A922-776B292CC5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF80C5B0-D690-49A8-A922-776B292CC5F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437B55E1-8661-4AD6-A082-C3036BDD953D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437B55E1-8661-4AD6-A082-C3036BDD953D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437B55E1-8661-4AD6-A082-C3036BDD953D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437B55E1-8661-4AD6-A082-C3036BDD953D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13973883-A88B-4F44-8E10-5CF33900A731}
+	EndGlobalSection
+EndGlobal

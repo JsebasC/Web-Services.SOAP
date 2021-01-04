@@ -1,0 +1,12 @@
+D:\Proyectos\Indigo\CapaDato\bin\Debug\CapaDato.dll.config
+D:\Proyectos\Indigo\CapaDato\bin\Debug\CapaDato.dll
+D:\Proyectos\Indigo\CapaDato\bin\Debug\CapaDato.pdb
+D:\Proyectos\Indigo\CapaDato\bin\Debug\EntityFramework.dll
+D:\Proyectos\Indigo\CapaDato\bin\Debug\EntityFramework.SqlServer.dll
+D:\Proyectos\Indigo\CapaDato\bin\Debug\EntityFramework.xml
+D:\Proyectos\Indigo\CapaDato\bin\Debug\EntityFramework.SqlServer.xml
+D:\Proyectos\Indigo\CapaDato\obj\Debug\CapaDato.csproj.CoreCompileInputs.cache
+D:\Proyectos\Indigo\CapaDato\obj\Debug\CapaDato.csproj.CopyComplete
+D:\Proyectos\Indigo\CapaDato\obj\Debug\CapaDato.dll
+D:\Proyectos\Indigo\CapaDato\obj\Debug\CapaDato.pdb
+D:\Proyectos\Indigo\CapaDato\obj\Debug\CapaDato.csprojAssemblyReference.cache

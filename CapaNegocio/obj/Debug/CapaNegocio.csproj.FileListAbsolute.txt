@@ -1,0 +1,12 @@
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\CapaNegocio.dll
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\CapaNegocio.pdb
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\CapaDato.dll
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\EntityFramework.dll
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\CapaDato.pdb
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\CapaDato.dll.config
+D:\Proyectos\Indigo\CapaNegocio\bin\Debug\EntityFramework.xml
+D:\Proyectos\Indigo\CapaNegocio\obj\Debug\CapaNegocio.csprojAssemblyReference.cache
+D:\Proyectos\Indigo\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+D:\Proyectos\Indigo\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+D:\Proyectos\Indigo\CapaNegocio\obj\Debug\CapaNegocio.dll
+D:\Proyectos\Indigo\CapaNegocio\obj\Debug\CapaNegocio.pdb

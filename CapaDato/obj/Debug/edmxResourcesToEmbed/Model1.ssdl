@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="indigoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Almacen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventarioFisico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAlmacen" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+    <Property Name="PrecioVenta" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="StockMinimo" Type="int" Nullable="false" />
+    <Property Name="StockMaximo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RemisionEntrada">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="FechaDocumento" Type="datetime" Nullable="false" />
+    <Property Name="IdProveedor" Type="int" Nullable="false" />
+    <Property Name="IdAlmacen" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RemisionEntradaDetalle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRemisionEntrada" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen">
+    <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+    <End Role="InventarioFisico" Type="Self.InventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Almacen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioFisico">
+        <PropertyRef Name="IdAlmacen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_InventarioFisico_dbo_Producto_IdProducto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="InventarioFisico" Type="Self.InventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioFisico">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen">
+    <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+    <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Almacen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RemisionEntrada">
+        <PropertyRef Name="IdAlmacen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RemisionEntrada">
+        <PropertyRef Name="IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="RemisionEntradaDetalle" Type="Self.RemisionEntradaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RemisionEntradaDetalle">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada">
+    <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="1" />
+    <End Role="RemisionEntradaDetalle" Type="Self.RemisionEntradaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RemisionEntrada">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RemisionEntradaDetalle">
+        <PropertyRef Name="IdRemisionEntrada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Report1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchAllProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchAllProveedores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchAllRemisionEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchAllRemisionEntrada1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchAllRemisionEntradaDetalleByRIdRemisionEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEntradaDetalle" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SearchInventarioFisicoCantidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchProductoYRemisionEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEntradaDetalle" Type="int" Mode="In" />
+    <Parameter Name="idProducto" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="indigoDBModelStoreContainer">
+    <EntitySet Name="Almacen" EntityType="Self.Almacen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioFisico" EntityType="Self.InventarioFisico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RemisionEntrada" EntityType="Self.RemisionEntrada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RemisionEntradaDetalle" EntityType="Self.RemisionEntradaDetalle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen" Association="Self.FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen">
+      <End Role="Almacen" EntitySet="Almacen" />
+      <End Role="InventarioFisico" EntitySet="InventarioFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_InventarioFisico_dbo_Producto_IdProducto" Association="Self.FK_dbo_InventarioFisico_dbo_Producto_IdProducto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="InventarioFisico" EntitySet="InventarioFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen" Association="Self.FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen">
+      <End Role="Almacen" EntitySet="Almacen" />
+      <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor" Association="Self.FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto" Association="Self.FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="RemisionEntradaDetalle" EntitySet="RemisionEntradaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada" Association="Self.FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada">
+      <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+      <End Role="RemisionEntradaDetalle" EntitySet="RemisionEntradaDetalle" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

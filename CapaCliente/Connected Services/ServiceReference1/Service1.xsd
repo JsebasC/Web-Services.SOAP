@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="agregarProveedor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarProveedorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateProveedor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateProveedorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteProveedor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteProveedorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PrecioVenta" type="xs:decimal" />
+        <xs:element minOccurs="0" name="StockMinimo" type="xs:int" />
+        <xs:element minOccurs="0" name="StockMaximo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarProductoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PrecioVenta" type="xs:decimal" />
+        <xs:element minOccurs="0" name="StockMinimo" type="xs:int" />
+        <xs:element minOccurs="0" name="StockMaximo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateProductoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteProductoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarRemision">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idProveedor" type="xs:int" />
+        <xs:element minOccurs="0" name="idAlmacen" type="xs:int" />
+        <xs:element minOccurs="0" name="estado" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarRemisionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateRemision">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idProveedor" type="xs:int" />
+        <xs:element minOccurs="0" name="idAlmacen" type="xs:int" />
+        <xs:element minOccurs="0" name="estado" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateRemisionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteRemision">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteRemisionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarRemisionDetalle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRemisionEntrada" type="xs:int" />
+        <xs:element minOccurs="0" name="idProducto" type="xs:int" />
+        <xs:element minOccurs="0" name="cantidad" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agregarRemisionDetalleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateRemisionDetalle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idRemisionEntrada" type="xs:int" />
+        <xs:element minOccurs="0" name="idProducto" type="xs:int" />
+        <xs:element minOccurs="0" name="cantidad" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateRemisionDetalleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteRemisionDetalle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteRemisionDetalleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inventarioFisico">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element minOccurs="0" name="Almacen" type="xs:int" />
+        <xs:element minOccurs="0" name="producto" type="xs:int" />
+        <xs:element minOccurs="0" name="cantidad" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inventarioFisicoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

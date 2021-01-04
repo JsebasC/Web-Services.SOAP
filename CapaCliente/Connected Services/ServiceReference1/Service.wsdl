@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:54599/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:54599/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_agregarProveedor_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProveedor" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarProveedor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateProveedor_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateProveedor" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateProveedor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteProveedor_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteProveedor" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteProveedor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarProducto_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProducto" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarProducto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateProducto_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateProducto" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateProducto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteProducto_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteProducto" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteProducto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarRemision_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarRemision" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarRemision_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarRemisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateRemision_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateRemision" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateRemision_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateRemisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteRemision_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteRemision" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteRemision_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteRemisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarRemisionDetalle_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarRemisionDetalle" />
+  </wsdl:message>
+  <wsdl:message name="IService_agregarRemisionDetalle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarRemisionDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateRemisionDetalle_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateRemisionDetalle" />
+  </wsdl:message>
+  <wsdl:message name="IService_updateRemisionDetalle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateRemisionDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteRemisionDetalle_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteRemisionDetalle" />
+  </wsdl:message>
+  <wsdl:message name="IService_deleteRemisionDetalle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteRemisionDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_inventarioFisico_InputMessage">
+    <wsdl:part name="parameters" element="tns:inventarioFisico" />
+  </wsdl:message>
+  <wsdl:message name="IService_inventarioFisico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:inventarioFisicoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="agregarProveedor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/agregarProveedor" message="tns:IService_agregarProveedor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/agregarProveedorResponse" message="tns:IService_agregarProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProveedor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/updateProveedor" message="tns:IService_updateProveedor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/updateProveedorResponse" message="tns:IService_updateProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProveedor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/deleteProveedor" message="tns:IService_deleteProveedor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/deleteProveedorResponse" message="tns:IService_deleteProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarProducto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/agregarProducto" message="tns:IService_agregarProducto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/agregarProductoResponse" message="tns:IService_agregarProducto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProducto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/updateProducto" message="tns:IService_updateProducto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/updateProductoResponse" message="tns:IService_updateProducto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProducto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/deleteProducto" message="tns:IService_deleteProducto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/deleteProductoResponse" message="tns:IService_deleteProducto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarRemision">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/agregarRemision" message="tns:IService_agregarRemision_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/agregarRemisionResponse" message="tns:IService_agregarRemision_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateRemision">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/updateRemision" message="tns:IService_updateRemision_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/updateRemisionResponse" message="tns:IService_updateRemision_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteRemision">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/deleteRemision" message="tns:IService_deleteRemision_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/deleteRemisionResponse" message="tns:IService_deleteRemision_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarRemisionDetalle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/agregarRemisionDetalle" message="tns:IService_agregarRemisionDetalle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/agregarRemisionDetalleResponse" message="tns:IService_agregarRemisionDetalle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateRemisionDetalle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/updateRemisionDetalle" message="tns:IService_updateRemisionDetalle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/updateRemisionDetalleResponse" message="tns:IService_updateRemisionDetalle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteRemisionDetalle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/deleteRemisionDetalle" message="tns:IService_deleteRemisionDetalle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/deleteRemisionDetalleResponse" message="tns:IService_deleteRemisionDetalle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="inventarioFisico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/inventarioFisico" message="tns:IService_inventarioFisico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/inventarioFisicoResponse" message="tns:IService_inventarioFisico_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="agregarProveedor">
+      <soap:operation soapAction="http://tempuri.org/IService/agregarProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProveedor">
+      <soap:operation soapAction="http://tempuri.org/IService/updateProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProveedor">
+      <soap:operation soapAction="http://tempuri.org/IService/deleteProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarProducto">
+      <soap:operation soapAction="http://tempuri.org/IService/agregarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProducto">
+      <soap:operation soapAction="http://tempuri.org/IService/updateProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProducto">
+      <soap:operation soapAction="http://tempuri.org/IService/deleteProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarRemision">
+      <soap:operation soapAction="http://tempuri.org/IService/agregarRemision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateRemision">
+      <soap:operation soapAction="http://tempuri.org/IService/updateRemision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRemision">
+      <soap:operation soapAction="http://tempuri.org/IService/deleteRemision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarRemisionDetalle">
+      <soap:operation soapAction="http://tempuri.org/IService/agregarRemisionDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateRemisionDetalle">
+      <soap:operation soapAction="http://tempuri.org/IService/updateRemisionDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRemisionDetalle">
+      <soap:operation soapAction="http://tempuri.org/IService/deleteRemisionDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inventarioFisico">
+      <soap:operation soapAction="http://tempuri.org/IService/inventarioFisico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost:54599/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

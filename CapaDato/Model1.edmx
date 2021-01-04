@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="indigoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Almacen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventarioFisico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAlmacen" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="PrecioVenta" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StockMinimo" Type="int" Nullable="false" />
+          <Property Name="StockMaximo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RemisionEntrada">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaDocumento" Type="datetime" Nullable="false" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="IdAlmacen" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RemisionEntradaDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRemisionEntrada" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+          <End Role="InventarioFisico" Type="Self.InventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventarioFisico">
+              <PropertyRef Name="IdAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InventarioFisico_dbo_Producto_IdProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="InventarioFisico" Type="Self.InventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventarioFisico">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+          <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntrada">
+              <PropertyRef Name="IdAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntrada">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="RemisionEntradaDetalle" Type="Self.RemisionEntradaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntradaDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada">
+          <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="1" />
+          <End Role="RemisionEntradaDetalle" Type="Self.RemisionEntradaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RemisionEntrada">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntradaDetalle">
+              <PropertyRef Name="IdRemisionEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Report1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchAllProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchAllProveedores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchAllRemisionEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchAllRemisionEntrada1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchAllRemisionEntradaDetalleByRIdRemisionEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEntradaDetalle" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchInventarioFisicoCantidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchProductoYRemisionEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEntradaDetalle" Type="int" Mode="In" />
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="indigoDBModelStoreContainer">
+          <EntitySet Name="Almacen" EntityType="Self.Almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventarioFisico" EntityType="Self.InventarioFisico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemisionEntrada" EntityType="Self.RemisionEntrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemisionEntradaDetalle" EntityType="Self.RemisionEntradaDetalle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen" Association="Self.FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="InventarioFisico" EntitySet="InventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InventarioFisico_dbo_Producto_IdProducto" Association="Self.FK_dbo_InventarioFisico_dbo_Producto_IdProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="InventarioFisico" EntitySet="InventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen" Association="Self.FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor" Association="Self.FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto" Association="Self.FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="RemisionEntradaDetalle" EntitySet="RemisionEntradaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada" Association="Self.FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada">
+            <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+            <End Role="RemisionEntradaDetalle" EntitySet="RemisionEntradaDetalle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="indigoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Almacen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InventarioFisico" Relationship="Self.FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen" FromRole="Almacen" ToRole="InventarioFisico" />
+          <NavigationProperty Name="RemisionEntrada" Relationship="Self.FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen" FromRole="Almacen" ToRole="RemisionEntrada" />
+        </EntityType>
+        <EntityType Name="InventarioFisico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAlmacen" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Almacen" Relationship="Self.FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen" FromRole="InventarioFisico" ToRole="Almacen" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_dbo_InventarioFisico_dbo_Producto_IdProducto" FromRole="InventarioFisico" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrecioVenta" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StockMinimo" Type="Int32" Nullable="false" />
+          <Property Name="StockMaximo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InventarioFisico" Relationship="Self.FK_dbo_InventarioFisico_dbo_Producto_IdProducto" FromRole="Producto" ToRole="InventarioFisico" />
+          <NavigationProperty Name="RemisionEntradaDetalle" Relationship="Self.FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto" FromRole="Producto" ToRole="RemisionEntradaDetalle" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RemisionEntrada" Relationship="Self.FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor" FromRole="Proveedor" ToRole="RemisionEntrada" />
+        </EntityType>
+        <EntityType Name="RemisionEntrada">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaDocumento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="IdAlmacen" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Almacen" Relationship="Self.FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen" FromRole="RemisionEntrada" ToRole="Almacen" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor" FromRole="RemisionEntrada" ToRole="Proveedor" />
+          <NavigationProperty Name="RemisionEntradaDetalle" Relationship="Self.FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada" FromRole="RemisionEntrada" ToRole="RemisionEntradaDetalle" />
+        </EntityType>
+        <EntityType Name="RemisionEntradaDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRemisionEntrada" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto" FromRole="RemisionEntradaDetalle" ToRole="Producto" />
+          <NavigationProperty Name="RemisionEntrada" Relationship="Self.FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada" FromRole="RemisionEntradaDetalle" ToRole="RemisionEntrada" />
+        </EntityType>
+        <Association Name="FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+          <End Role="InventarioFisico" Type="Self.InventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventarioFisico">
+              <PropertyRef Name="IdAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+          <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntrada">
+              <PropertyRef Name="IdAlmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InventarioFisico_dbo_Producto_IdProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="InventarioFisico" Type="Self.InventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventarioFisico">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="RemisionEntradaDetalle" Type="Self.RemisionEntradaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntradaDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntrada">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada">
+          <End Role="RemisionEntrada" Type="Self.RemisionEntrada" Multiplicity="1" />
+          <End Role="RemisionEntradaDetalle" Type="Self.RemisionEntradaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RemisionEntrada">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemisionEntradaDetalle">
+              <PropertyRef Name="IdRemisionEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="indigoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Almacen" EntityType="Self.Almacen" />
+          <EntitySet Name="InventarioFisico" EntityType="Self.InventarioFisico" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="RemisionEntrada" EntityType="Self.RemisionEntrada" />
+          <EntitySet Name="RemisionEntradaDetalle" EntityType="Self.RemisionEntradaDetalle" />
+          <AssociationSet Name="FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen" Association="Self.FK_dbo_InventarioFisico_dbo_Almacen_IdAlmacen">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="InventarioFisico" EntitySet="InventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen" Association="Self.FK_dbo_RemisionEntrada_dbo_Almacen_IdAlmacen">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InventarioFisico_dbo_Producto_IdProducto" Association="Self.FK_dbo_InventarioFisico_dbo_Producto_IdProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="InventarioFisico" EntitySet="InventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto" Association="Self.FK_dbo_RemisionEntradaDetalle_dbo_Producto_IdProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="RemisionEntradaDetalle" EntitySet="RemisionEntradaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor" Association="Self.FK_dbo_RemisionEntrada_dbo_Proveedor_IdProveedor">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada" Association="Self.FK_dbo_RemisionEntradaDetalle_dbo_RemisionEntrada_IdRemisionEntrada">
+            <End Role="RemisionEntrada" EntitySet="RemisionEntrada" />
+            <End Role="RemisionEntradaDetalle" EntitySet="RemisionEntradaDetalle" />
+          </AssociationSet>
+          <FunctionImport Name="SearchAllProveedores" ReturnType="Collection(indigoDBModel.SearchAllProveedores_Result)" />
+          <FunctionImport Name="SearchAllProductos" ReturnType="Collection(indigoDBModel.SearchAllProductos_Result)" />
+          <FunctionImport Name="SearchAllProveedores1" ReturnType="Collection(indigoDBModel.SearchAllProveedores1_Result)" />
+          <FunctionImport Name="SearchAllProductos1" ReturnType="Collection(indigoDBModel.SearchAllProductos1_Result)" />
+          <FunctionImport Name="SearchAllRemisionEntrada" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntrada_Result)" />
+          <FunctionImport Name="SearchAllRemisionEntrada1" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntrada1_Result)" />
+          <FunctionImport Name="SearchAllRemisionEntradaDetalle" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntradaDetalle_Result)">
+          <Parameter Name="idEntradaDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchAllRemisionEntradaD" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntradaD_Result)">
+          <Parameter Name="idEntradaDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchAllRemisionEntradaByDetalle" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntradaByDetalle_Result)">
+          <Parameter Name="idEntradaDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchAllRemisionEntradaDetalleByRemision" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntradaDetalleByRemision_Result)">
+            <Parameter Name="idEntradaDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchAllRemisionEntradaDetalleByRIdRemisionEntrada" ReturnType="Collection(indigoDBModel.SearchAllRemisionEntradaDetalleByRIdRemisionEntrada_Result)">
+          <Parameter Name="idEntradaDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchProductoYRemisionEntrada" ReturnType="Collection(indigoDBModel.SearchProductoYRemisionEntrada_Result)">
+            <Parameter Name="idEntradaDetalle" Mode="In" Type="Int32" />
+            <Parameter Name="idProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Report1" ReturnType="Collection(indigoDBModel.Report1_Result)" />
+          <FunctionImport Name="SearchInventarioFisicoCantidad" ReturnType="Collection(indigoDBModel.SearchInventarioFisicoCantidad_Result)" />
+        </EntityContainer>
+        <ComplexType Name="SearchAllProveedores_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchAllProductos_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchAllProveedores1_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchAllProductos1_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Decimal" Name="PrecioVenta" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="StockMaximo" Nullable="false" />
+          <Property Type="Int32" Name="StockMinimo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntrada_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Provedor" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Almacen" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntrada1_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Provedor" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Almacen" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntradaDetalle_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="RemisionCodigo" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="idRemision" Nullable="false" />
+          <Property Type="String" Name="CodigoProducto" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntradaD_Result">
+          <Property Type="Int32" Name="idRemision" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntradaByDetalle_Result">
+          <Property Type="Int32" Name="idRemision" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntradaDetalleByRemision_Result">
+          <Property Type="Int32" Name="idRemision" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchAllRemisionEntradaDetalleByRIdRemisionEntrada_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdRemisionEntrada" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchProductoYRemisionEntrada_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdRemisionEntrada" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Report1_Result">
+          <Property Type="String" Name="Provedor" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Codigo_Producto" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre_Producto" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchInventarioFisicoCantidad_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="product_count" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="indigoDBModelStoreContainer" CdmEntityContainer="indigoDBEntities">
+          <EntitySetMapping Name="Almacen">
+            <EntityTypeMapping TypeName="indigoDBModel.Almacen">
+              <MappingFragment StoreEntitySet="Almacen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventarioFisico">
+            <EntityTypeMapping TypeName="indigoDBModel.InventarioFisico">
+              <MappingFragment StoreEntitySet="InventarioFisico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAlmacen" ColumnName="IdAlmacen" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="indigoDBModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="StockMinimo" ColumnName="StockMinimo" />
+                <ScalarProperty Name="StockMaximo" ColumnName="StockMaximo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="indigoDBModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemisionEntrada">
+            <EntityTypeMapping TypeName="indigoDBModel.RemisionEntrada">
+              <MappingFragment StoreEntitySet="RemisionEntrada">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FechaDocumento" ColumnName="FechaDocumento" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdAlmacen" ColumnName="IdAlmacen" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemisionEntradaDetalle">
+            <EntityTypeMapping TypeName="indigoDBModel.RemisionEntradaDetalle">
+              <MappingFragment StoreEntitySet="RemisionEntradaDetalle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRemisionEntrada" ColumnName="IdRemisionEntrada" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchAllProveedores1" FunctionName="indigoDBModel.Store.SearchAllProveedores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchAllProveedores1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchAllProductos1" FunctionName="indigoDBModel.Store.SearchAllProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchAllProductos1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="StockMaximo" ColumnName="StockMaximo" />
+                <ScalarProperty Name="StockMinimo" ColumnName="StockMinimo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchAllRemisionEntrada" FunctionName="indigoDBModel.Store.SearchAllRemisionEntrada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchAllRemisionEntrada_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Provedor" ColumnName="Provedor" />
+                <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchAllRemisionEntrada1" FunctionName="indigoDBModel.Store.SearchAllRemisionEntrada1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchAllRemisionEntrada1_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Provedor" ColumnName="Provedor" />
+                <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchAllRemisionEntradaDetalleByRIdRemisionEntrada" FunctionName="indigoDBModel.Store.SearchAllRemisionEntradaDetalleByRIdRemisionEntrada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchAllRemisionEntradaDetalleByRIdRemisionEntrada_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRemisionEntrada" ColumnName="IdRemisionEntrada" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchProductoYRemisionEntrada" FunctionName="indigoDBModel.Store.SearchProductoYRemisionEntrada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchProductoYRemisionEntrada_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRemisionEntrada" ColumnName="IdRemisionEntrada" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Report1" FunctionName="indigoDBModel.Store.Report1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.Report1_Result">
+                <ScalarProperty Name="Provedor" ColumnName="Provedor" />
+                <ScalarProperty Name="Codigo_Producto" ColumnName="Codigo_Producto" />
+                <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchInventarioFisicoCantidad" FunctionName="indigoDBModel.Store.SearchInventarioFisicoCantidad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="indigoDBModel.SearchInventarioFisicoCantidad_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="product_count" ColumnName="product_count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
